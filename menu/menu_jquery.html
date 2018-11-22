@@ -1,0 +1,57 @@
+<!Doctype html>
+<html lang="ru-RU">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Домашняя работа 2 JavaScript</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<h3>Личный кабинет и категории содержат подпункты меню</h3>
+	<div id="w">
+		<nav>
+			<ul id="menuDo">
+				<li><a href="#">Главная</a></li>
+				<li><a href="#">Личный кабинет</a>
+					<ul>
+						<li><a href="#">Каталог</a></li>
+						<li><a href="#">Промоакции</a></li>
+						<li><a href="#">Ваши баллы</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Категории</a>
+					<ul>
+						<li><a href="#">Игрушки</a></li>
+						<li><a href="#">Поделки</a></li>
+						<li><a href="#">Цветы</a></li>
+						<li><a href="#">Шарики</a></li>
+						<li><a href="#">Открытки</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Контакты</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('a').on('click', function(e) {
+				e.preventDefault();
+			});
+
+			$('#menuDo li').hover(function() {
+				clearTimeout($.data(this, 'timer'));
+				$('ul', this).stop(true, true).slideDown(300);
+			}, function() {
+				$.data(this, 'timer', setTimeout($.proxy(function() {
+					$('ul', this).stop(true, true).slideUp(300);
+				}, this), 100));
+			});
+
+		});
+
+	</script>
+</body>
+
+</html>
